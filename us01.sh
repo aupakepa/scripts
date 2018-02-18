@@ -48,6 +48,7 @@ do
 	cat /etc/passwd | grep $USUARIO > /dev/null
 	if [ $? -ne 0 ]
 	then
+		DHOME=/home/$GRP/$USUARIO
 		echo "Creando usuario $USUARIO"
 		useradd -d $DHOME -m -g $GRP -G $GRS -s $SHELL $USUARIO
 		(echo $USUARIO;echo $USUARIO) | passwd $USUARIO	
@@ -63,6 +64,7 @@ done
         cat /etc/passwd | grep $USUARIO > /dev/null
         if [ $? -eq 0 ]
         then
+		DHOME=/home/$GRP/$USUARIO
                 echo "Borrando usuario $USUARIO"
                 userdel $USUARIO
 		echo borrando directorio del usuario
